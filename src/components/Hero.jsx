@@ -1,5 +1,6 @@
 import Icon from './Icon'
-import heroTruck from '../assets/hero-truck.jpg'
+import heroCollection from '../assets/hero-collection.jpg'
+import heroCollectionTall from '../assets/hero-collection-tall.jpg'
 import { business } from '../data/site'
 
 const highlights = ['Fully Licensed & Insured', 'Eco Friendly', 'Competitive Prices']
@@ -8,12 +9,15 @@ export default function Hero() {
   return (
     <section id="home" className="relative isolate overflow-hidden bg-ink-950">
       <div className="absolute inset-0 -z-20">
-        <img
-          src={heroTruck}
-          alt="Fox Clear team member beside a branded waste clearance lorry"
-          className="h-full w-full object-cover object-[68%_center]"
-          fetchPriority="high"
-        />
+        <picture className="block h-full w-full">
+          <source media="(max-width: 767px)" srcSet={heroCollectionTall} />
+          <img
+            src={heroCollection}
+            alt="A Fox Clear operative carrying an old armchair to the branded clearance van outside a house"
+            className="h-full w-full object-cover object-[22%_50%] md:object-[50%_35%]"
+            fetchPriority="high"
+          />
+        </picture>
       </div>
 
       <div
@@ -25,7 +29,7 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <div className="container-page relative flex min-h-[42rem] flex-col justify-center pt-32 pb-20 lg:min-h-[46rem] lg:pt-36">
+      <div className="container-page relative flex min-h-[38rem] flex-col justify-center pt-32 pb-20 sm:min-h-[42rem] lg:min-h-[46rem] lg:pt-36">
         <div className="max-w-2xl">
           <p className="reveal is-visible eyebrow flex flex-wrap items-center gap-x-3 gap-y-1">
             <span className="bg-fox-500 h-px w-10 shrink-0" />
