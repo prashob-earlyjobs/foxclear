@@ -3,7 +3,7 @@ export const business = {
   fullName: 'Fox Clear Waste Clearance',
   tagline: 'Cleared Properly. Recycled Responsibly.',
   strapline: 'No job too big. No job too small. We clear it all!',
-  phone: '07346 815393',
+  phone: '+44 7346 815393',
   phoneHref: 'tel:+447346815393',
   email: 'info@foxclearclearance.co.uk',
   website: 'www.foxclearclearance.co.uk',
