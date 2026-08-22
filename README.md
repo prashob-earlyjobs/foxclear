@@ -25,9 +25,9 @@ npm run lint     # eslint
 
 Nearly all copy lives in one file: `src/data/site.js`.
 
-| Export         | What it controls                                            |
-| -------------- | ----------------------------------------------------------- |
-| `business`     | Phone, email, socials, area served, opening hours, taglines |
+| Export         | What it controls                                                     |
+| -------------- | -------------------------------------------------------------------- |
+| `business`     | Phone, email, address, socials, area served, opening hours, taglines |
 | `navLinks`     | Header and footer navigation                                 |
 | `services`     | The six service cards and the contact form dropdown          |
 | `promises`     | The four trust badges under the About section                |
@@ -39,20 +39,23 @@ Nearly all copy lives in one file: `src/data/site.js`.
 
 Change the phone number in **two** places — `business.phone` (displayed) and
 `business.phoneHref` (the `tel:` link) — plus the `LocalBusiness` structured data block in
-`index.html`.
+`index.html`. The same applies to the address: `business.address` drives the site, and the
+`PostalAddress` in `index.html` drives search results.
 
 ### Placeholder content to replace before launch
 
-- Phone number, email address and the Facebook / Instagram URLs in `src/data/site.js`
-- `areaServed` — currently "London & the surrounding areas", inferred from the brand artwork
+- Email address and the Facebook / Instagram URLs in `src/data/site.js`
 - Testimonials in `reviews` are written as examples; swap in real ones
 - Stats (`100+`, `5★`, `48 reviews`) are from the brand artwork; confirm before going live
+- Opening hours are a sensible default for the trade; confirm the real ones
 
 ## Project structure
 
 ```
 public/favicon.png          Logo mark, generated from the brand artwork
+public/og-image.jpg         Social share card, rendered from the live hero section
 scripts/extract_assets.py   Slices the supplied brand sheets into web assets
+scripts/capture_og_image.py Re-renders public/og-image.jpg from a running server
 src/
   assets/                   Generated images (logo, van, truck, workwear photography)
   components/               One file per section, plus Icon / Reveal / SectionHeading
@@ -85,6 +88,24 @@ python3 -m venv .venv
 
 Replace these with real job photography when it is available — the layout expects roughly
 landscape images in the gallery and a portrait image in the About section.
+
+The hero is served as two crops: the landscape `hero-collection.jpg` and, under 768px, a
+portrait `hero-collection-tall.jpg` chosen by a `<picture>` element, so the van branding
+stays visible in the narrow strip beside the headline on phones.
+
+## Social share image
+
+`public/og-image.jpg` is a 1200×630 render of the hero section, referenced by the Open Graph
+and Twitter card tags in `index.html`. Regenerate it whenever the hero changes — start a
+server, then:
+
+```bash
+npm run dev
+.venv/bin/python scripts/capture_og_image.py --url http://localhost:5173/
+```
+
+The script drives headless Chrome, so it currently expects Chrome at the standard macOS
+path; pass `--chrome` to point at another binary.
 
 ## Wiring up the contact form
 

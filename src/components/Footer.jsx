@@ -88,7 +88,22 @@ export default function Footer() {
             </li>
             <li className="flex items-start gap-3">
               <Icon name="pin" className="text-fox-500 mt-0.5 h-4.5 w-4.5 shrink-0" />
-              <span className="text-ink-300">{business.areaServed}</span>
+              <address className="text-ink-300 not-italic">
+                <a
+                  href={business.address.mapsHref}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="hover:text-white"
+                >
+                  {business.address.street}
+                  <br />
+                  {business.address.town} {business.address.postcode}
+                </a>
+              </address>
+            </li>
+            <li className="flex items-start gap-3">
+              <Icon name="map" className="text-fox-500 mt-0.5 h-4.5 w-4.5 shrink-0" />
+              <span className="text-ink-300">Covering {business.areaServed}</span>
             </li>
             <li className="flex items-start gap-3">
               <Icon name="leaf" className="text-leaf mt-0.5 h-4.5 w-4.5 shrink-0" />

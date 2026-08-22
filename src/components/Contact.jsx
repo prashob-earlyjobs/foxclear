@@ -65,7 +65,14 @@ export default function Contact() {
       value: business.email,
       href: `mailto:${business.email}`,
     },
-    { icon: 'pin', label: 'Areas covered', value: business.areaServed },
+    {
+      icon: 'pin',
+      label: 'Find us',
+      value: business.address.full,
+      href: business.address.mapsHref,
+      external: true,
+    },
+    { icon: 'map', label: 'Areas covered', value: business.areaServed },
   ]
 
   return (
@@ -95,6 +102,8 @@ export default function Contact() {
                   <Wrapper
                     key={detail.label}
                     href={detail.href}
+                    target={detail.external ? '_blank' : undefined}
+                    rel={detail.external ? 'noreferrer noopener' : undefined}
                     className="border-ink-800 bg-ink-950 hover:border-fox-500/60 flex items-center gap-4 border p-4 transition-colors"
                   >
                     <span className="bg-fox-500/12 text-fox-500 flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
@@ -175,7 +184,7 @@ export default function Contact() {
                   label="Postcode"
                   value={form.postcode}
                   onChange={update('postcode')}
-                  placeholder="SW1A 1AA"
+                  placeholder="KT1 2AB"
                   autoComplete="postal-code"
                 />
 

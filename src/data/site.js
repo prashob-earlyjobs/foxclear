@@ -3,11 +3,19 @@ export const business = {
   fullName: 'Fox Clear Waste Clearance',
   tagline: 'Cleared Properly. Recycled Responsibly.',
   strapline: 'No job too big. No job too small. We clear it all!',
-  phone: '07960 123 456',
-  phoneHref: 'tel:+447960123456',
+  phone: '07346 815393',
+  phoneHref: 'tel:+447346815393',
   email: 'info@foxclearclearance.co.uk',
   website: 'www.foxclearclearance.co.uk',
-  areaServed: 'London & the surrounding areas',
+  address: {
+    street: '60 Richmond Road',
+    town: 'Kingston',
+    postcode: 'KT2 5EH',
+    full: '60 Richmond Road, Kingston, KT2 5EH',
+    mapsHref:
+      'https://www.google.com/maps/search/?api=1&query=60+Richmond+Road+Kingston+KT2+5EH',
+  },
+  areaServed: 'Kingston & the surrounding areas',
   facebook: 'https://www.facebook.com/',
   instagram: 'https://www.instagram.com/',
   hours: [
